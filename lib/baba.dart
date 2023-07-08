@@ -38,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return
       Scaffold(
         body: Container(
@@ -57,15 +56,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 right: animate ? MediaQuery.of(context).size.height / -75 : -5,
                 duration: const Duration(milliseconds: 1600),
                 curve: Curves.easeInOut,
-                child: Image(image: AssetImage(spimg)),
+                child: const Image(image: AssetImage(spimg)),
               ),
               // SizedBox(height: 1,),
-              Positioned(
+              const Positioned(
                 bottom: 110, // Adjust the position as needed
                 left: 0,
                 right: 0,
                 child: Column(
-                  children: const [
+                  children: [
                     Text(
                       'Hush',
                       style: TextStyle(
@@ -103,26 +102,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
 //OnBoarding Screen starts from here//
-
-
-
-
-
-class OnboSplash extends StatelessWidget {
-  const OnboSplash({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Onboarding Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashScreen(),
-    );
-  }
-}
 
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({Key? key}) : super(key: key);
@@ -180,6 +159,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
     ];
 
+    void onPageChangedCallBack(int activePageIndex) {
+      setState(() {
+        currentPage = activePageIndex;
+      });
+    }
+
     return Scaffold(
         body: Stack(
           alignment: Alignment.center,
@@ -197,12 +182,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onPressed: () {
                   int nextPage = controller.currentPage + 1;
                   if (nextPage < 4) {
+                    print(nextPage);
                     controller.animateToPage(page: nextPage);
                   } else {
                     print("working");
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AuthPage()),
+                      MaterialPageRoute(builder: (context) => const AuthPage()),
                     );
                   }
                 },
@@ -218,7 +204,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     color: Colors.black87,
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(Icons.arrow_forward_ios_outlined),
+                  child: const Icon(Icons.arrow_forward_ios_outlined),
                 ),
               ),
 
@@ -240,13 +226,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
           ],
         ));
-  }
-
-  void onPageChangedCallBack(int activePageIndex) {
-    setState(() {
-      currentPage = activePageIndex;
-    });
-
   }
 }
 
@@ -276,25 +255,25 @@ class OnBoardingPageWidget extends StatelessWidget {
             children: [
               Text(
                 model.title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,
                   fontSize: 36,
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 model.subTitle,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.normal,
                   fontSize: 15,
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 150),
+              const SizedBox(height: 150),
             ],
           ),
         ],
